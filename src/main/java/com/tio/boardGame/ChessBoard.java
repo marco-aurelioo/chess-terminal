@@ -1,11 +1,26 @@
-package com.tio.chess.model;
+package com.tio.boardGame;
 
 public class ChessBoard {
-        int rows = 8;
-        int cols = 8;
-        Piece[][] cells = new Piece[8][8];
+        int rows;
+        int cols;
 
-        public Piece piece(int col,int row){
+        public Piece[][] pieces;
+
+        public ChessBoard(int r, int c){
+            this.rows =r;
+            this.cols =c;
+            this.pieces = new Piece[r][c];
+        }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
+    public Piece piece(int col, int row){
             return null;
         }
 
@@ -29,7 +44,6 @@ public class ChessBoard {
             return false;
         }
 
-
         public void printBoard(){
             StringBuilder sb = new StringBuilder();
             for(int i = 0; i < rows; i++){
@@ -39,12 +53,12 @@ public class ChessBoard {
                 }
                 sb.append(System.getProperty("line.separator"));
             }
-            sb.append("  abcdefg");
+
             System.out.println(sb.toString());
         }
 
         public char printPiece(int r,int c){
-            Piece p = cells[r][c];
+            Piece p = pieces[r][c];
             if(p == null){
                 return '-';
             }else {
