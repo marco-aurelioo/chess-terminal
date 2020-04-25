@@ -1,8 +1,13 @@
 package com.tio.boardGame;
 
 public class Position {
-    int col;
-    int row;
+    private int col;
+    private int row;
+
+    public Position(int r, int c ){
+        this.row = r;
+        this.col = c;
+    }
 
     public int getCol() {
         return col;

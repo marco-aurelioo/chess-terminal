@@ -20,16 +20,17 @@ public class ChessBoard {
         return cols;
     }
 
-    public Piece piece(int col, int row){
-            return null;
-        }
+    public Piece piece(int row, int col){
+        return pieces[row][col];
+    }
 
         public Piece piece(Position position){
             return null;
         }
 
         public void placePiece(Piece piece,Position position){
-
+            this.pieces[position.getRow()][position.getCol()] = piece;
+            piece.position = position;
         }
 
         public Piece removePiece(Position position){
@@ -42,27 +43,5 @@ public class ChessBoard {
 
         public boolean thereIsAPiece(Position p){
             return false;
-        }
-
-        public void printBoard(){
-            StringBuilder sb = new StringBuilder();
-            for(int i = 0; i < rows; i++){
-                sb.append(rows-i).append(" ");
-                for(int j = 0; j <cols; j++){
-                    sb.append(printPiece(i,j));
-                }
-                sb.append(System.getProperty("line.separator"));
-            }
-
-            System.out.println(sb.toString());
-        }
-
-        public char printPiece(int r,int c){
-            Piece p = pieces[r][c];
-            if(p == null){
-                return '-';
-            }else {
-                return p.getPieceName();
-            }
         }
 }

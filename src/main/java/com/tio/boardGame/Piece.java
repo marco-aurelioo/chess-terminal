@@ -9,11 +9,4 @@ public abstract class Piece {
         this.board = board;
     }
 
-    public char getPieceName(){
-        return '-';
-    }
-
-    public ChessBoard getBoard(){
-        return this.board;
-    }
 }

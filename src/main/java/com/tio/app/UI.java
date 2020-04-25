@@ -18,11 +18,11 @@ public class UI {
         System.out.println(sb.toString());
     }
 
-    private static char printPiece(ChessPiece piece){
+    private static String printPiece(ChessPiece piece){
         if(piece == null){
-            return '-';
+            return "-";
         }else {
-            return piece.getPieceName();
+            return piece.toString();
         }
     }
 }
