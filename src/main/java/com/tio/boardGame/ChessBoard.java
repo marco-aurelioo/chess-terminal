@@ -1,16 +1,19 @@
 package com.tio.boardGame;
 
 public class ChessBoard {
-        int rows;
-        int cols;
+    int rows;
+    int cols;
 
-        public Piece[][] pieces;
+    public Piece[][] pieces;
 
-        public ChessBoard(int r, int c){
-            this.rows =r;
-            this.cols =c;
-            this.pieces = new Piece[r][c];
+    public ChessBoard(int r, int c) {
+        if(r < 0 && c < 0){
+            throw new BoardException("numero de colunas/linhas invalido");
         }
+        this.rows = r;
+        this.cols = c;
+        this.pieces = new Piece[r][c];
+    }
 
     public int getRows() {
         return rows;
@@ -20,28 +23,42 @@ public class ChessBoard {
         return cols;
     }
 
-    public Piece piece(int row, int col){
+    public Piece piece(int row, int col) {
         return pieces[row][col];
     }
 
-        public Piece piece(Position position){
-            return null;
-        }
+    public Piece piece(Position position) {
+        return pieces[position.getRow()][position.getCol()];
+    }
 
-        public void placePiece(Piece piece,Position position){
-            this.pieces[position.getRow()][position.getCol()] = piece;
-            piece.position = position;
+    public void placePiece(Piece piece, Position position) {
+        if(thereIsAPiece(position)){
+            throw new BoardException("Ja existe uma pça neste local");
         }
+        this.pieces[position.getRow()][position.getCol()] = piece;
+        piece.position = position;
+    }
 
-        public Piece removePiece(Position position){
-            return null;
-        }
+    public Piece removePiece(Position position) {
+        return null;
+    }
 
-        public boolean positionExists(Position position){
+    public boolean positionExists(Position position) {
+        try {
+            Piece p = pieces[position.getRow()][position.getCol()];
+            return true;
+        } catch (IndexOutOfBoundsException iof) {
             return false;
         }
+    }
 
-        public boolean thereIsAPiece(Position p){
+    public boolean thereIsAPiece(Position position){
+        Piece p = piece(position);
+        if(p == null) {
             return false;
+        }else{
+            return true;
         }
+    }
+
 }
