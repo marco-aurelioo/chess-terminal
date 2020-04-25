@@ -1,0 +1,14 @@
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/app/ConsoleColors.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/app/ChessApp.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/chess/model/ChessPiece.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/boardGame/Position.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/boardGame/ChessBoard.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/boardGame/BoardException.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/boardGame/pieces/Rook.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/chess/model/COLOR.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/boardGame/pieces/King.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/boardGame/Piece.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/app/UI.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/chess/model/ChessException.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/chess/model/ChessPosition.java
+/home/tiozao/estudo-papai/java/chess-terminal/src/main/java/com/tio/chess/model/ChessMatch.java

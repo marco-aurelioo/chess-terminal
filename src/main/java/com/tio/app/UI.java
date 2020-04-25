@@ -1,6 +1,7 @@
 package com.tio.app;
 
 import com.tio.boardGame.Piece;
+import com.tio.chess.model.COLOR;
 import com.tio.chess.model.ChessPiece;
 
 public class UI {
@@ -22,7 +23,11 @@ public class UI {
         if(piece == null){
             return "-";
         }else {
-            return piece.toString();
+            if(piece.getColor() == COLOR.WHITE) {
+                return ConsoleColors.YELLOW+ piece.toString() + ConsoleColors.RESET;
+            }else{
+                return ConsoleColors.BLUE+ piece.toString() + ConsoleColors.RESET;
+            }
         }
     }
 }
