@@ -6,7 +6,7 @@ public class ChessBoard {
 
     public Piece[][] pieces;
 
-    public ChessBoard(int r, int c) {
+    public ChessBoard(int c, int r) {
         if(r < 0 && c < 0){
             throw new BoardException("numero de colunas/linhas invalido");
         }
