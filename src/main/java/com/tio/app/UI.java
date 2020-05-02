@@ -3,8 +3,24 @@ package com.tio.app;
 import com.tio.boardGame.Piece;
 import com.tio.chess.model.COLOR;
 import com.tio.chess.model.ChessPiece;
+import com.tio.chess.model.ChessPosition;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class UI {
+
+
+    public static ChessPosition readChessPosition(Scanner scanner){
+        try {
+            String lance = scanner.nextLine();
+            char column = lance.charAt(0);
+            int row = Integer.parseInt(lance.substring(1));
+            return new ChessPosition(column, row);
+        }catch(RuntimeException ex){
+            throw  new InputMismatchException("Erro ao digitar position");
+        }
+    }
 
     public static void printBoard(ChessPiece[][] pieces){
         StringBuilder sb = new StringBuilder();

@@ -1,6 +1,8 @@
 package com.tio.chess.model;
 
+import com.tio.boardGame.BoardException;
 import com.tio.boardGame.ChessBoard;
+import com.tio.boardGame.Piece;
 import com.tio.boardGame.Position;
 import com.tio.boardGame.pieces.King;
 import com.tio.boardGame.pieces.Rook;
@@ -22,6 +24,27 @@ public class ChessMatch {
             }
         }
         return mat;
+    }
+
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition();
+        ValidateSourcePosition(source);
+        Piece capturePiece = makeMove(source,target);
+        return (ChessPiece) capturePiece;
+    }
+
+    private void ValidateSourcePosition(Position position){
+        if(!board.thereIsAPiece(position)) {
+            throw new ChessException("posição invalida");
+        }
+    }
+
+    private Piece makeMove(Position source, Position target) {
+        Piece piece =board.removePiece(source);
+        Piece capturedPiece =  board.removePiece(target);
+        board.placePiece(piece,target);
+        return capturedPiece;
     }
 
     private void placeNewPiece(char col, int row, ChessPiece piece){

@@ -1,0 +1,14 @@
+com/tio/boardGame/Piece.class
+com/tio/boardGame/Position.class
+com/tio/app/ChessApp.class
+com/tio/boardGame/ChessBoard.class
+com/tio/chess/model/COLOR.class
+com/tio/chess/model/ChessPiece.class
+com/tio/chess/model/ChessPosition.class
+com/tio/boardGame/pieces/Rook.class
+com/tio/chess/model/ChessException.class
+com/tio/app/ConsoleColors.class
+com/tio/chess/model/ChessMatch.class
+com/tio/boardGame/pieces/King.class
+com/tio/app/UI.class
+com/tio/boardGame/BoardException.class

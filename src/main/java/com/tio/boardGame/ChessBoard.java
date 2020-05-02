@@ -39,8 +39,26 @@ public class ChessBoard {
         piece.position = position;
     }
 
+    public Piece placePiece(Position position){
+        if(!positionExists(position)){
+            throw new BoardException(("Posição não tem peça"));
+        }
+        if(piece(position) ==null){
+            return null;
+        }
+        Piece aux = piece(position);
+        aux.position = null;
+        pieces[position.getRow()][position.getCol()] = null;
+        return aux;
+    }
+
     public Piece removePiece(Position position) {
-        return null;
+        if(!positionExists(position)){
+            throw new BoardException("Posição invalida");
+        }
+        Piece p = pieces[position.getRow()][position.getCol()];
+        pieces[position.getRow()][position.getCol()] = null;
+        return p;
     }
 
     public boolean positionExists(Position position) {
