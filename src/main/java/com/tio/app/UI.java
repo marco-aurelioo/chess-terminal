@@ -10,6 +10,10 @@ import java.util.Scanner;
 
 public class UI {
 
+    public static void clearScreen(){
+        System.out.print("\033[H\033[2j");
+        System.out.flush();
+    }
 
     public static ChessPosition readChessPosition(Scanner scanner){
         try {
