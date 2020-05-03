@@ -29,14 +29,21 @@ public class ChessMatch {
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition();
-        ValidateSourcePosition(source);
+        validateSourcePosition(source);
+        validateTargetPosition(source,target);
         Piece capturePiece = makeMove(source,target);
         return (ChessPiece) capturePiece;
     }
 
-    private void ValidateSourcePosition(Position position){
+    private void validateSourcePosition(Position position){
         if(!board.thereIsAPiece(position)) {
             throw new ChessException("posição invalida");
+        }
+    }
+
+    private void validateTargetPosition(Position source, Position target ){
+        if(!board.piece(source).possibleMove(target)){
+            throw new ChessException("Movimento invalido");
         }
     }
 
