@@ -12,7 +12,7 @@ public class ChessBoard {
         }
         this.rows = r;
         this.cols = c;
-        this.pieces = new Piece[r][c];
+        this.pieces = new Piece[c][r];
     }
 
     public int getRows() {
@@ -24,18 +24,21 @@ public class ChessBoard {
     }
 
     public Piece piece(int row, int col) {
-        return pieces[row][col];
+        return pieces[col][row];
     }
 
     public Piece piece(Position position) {
-        return pieces[position.getRow()][position.getCol()];
+        if(position.getCol() > pieces.length){
+            throw new BoardException("Casa invalida");
+        }
+        return pieces[position.getCol()][position.getRow()];
     }
 
     public void placePiece(Piece piece, Position position) {
         if(thereIsAPiece(position)){
             throw new BoardException("Ja existe uma pça neste local");
         }
-        this.pieces[position.getRow()][position.getCol()] = piece;
+        this.pieces[position.getCol()][position.getRow()] = piece;
         piece.position = position;
     }
 
@@ -48,7 +51,7 @@ public class ChessBoard {
         }
         Piece aux = piece(position);
         aux.position = null;
-        pieces[position.getRow()][position.getCol()] = null;
+        pieces[position.getCol()][position.getRow()] = null;
         return aux;
     }
 
@@ -56,14 +59,14 @@ public class ChessBoard {
         if(!positionExists(position)){
             throw new BoardException("Posição invalida");
         }
-        Piece p = pieces[position.getRow()][position.getCol()];
-        pieces[position.getRow()][position.getCol()] = null;
+        Piece p = pieces[position.getCol()][position.getRow()];
+        pieces[position.getCol()][position.getRow()] = null;
         return p;
     }
 
     public boolean positionExists(Position position) {
         try {
-            Piece p = pieces[position.getRow()][position.getCol()];
+            Piece p = pieces[position.getCol()][position.getRow()];
             return true;
         } catch (IndexOutOfBoundsException iof) {
             return false;

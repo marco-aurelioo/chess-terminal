@@ -17,13 +17,20 @@ public class ChessMatch {
     }
 
     public ChessPiece[][] getPieces() {
-        ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getCols()];
-        for (int i = 0; i < board.getRows(); i++){
-            for (int j = 0; j < board.getCols(); j++) {
+        ChessPiece[][] mat = new ChessPiece[board.getCols()][board.getRows()];
+        for (int i = 0; i < board.getCols(); i++){
+            for (int j = 0; j < board.getRows(); j++) {
                 mat[i][j] = (ChessPiece) board.piece(i, j);
             }
         }
         return mat;
+    }
+
+
+    public boolean[][] possiblesMoves(ChessPosition source) {
+        Position position = source.toPosition();
+        validateSourcePosition(position);
+        return board.piece(position).possibleMoves();
     }
 
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
@@ -68,4 +75,5 @@ public class ChessMatch {
         placeNewPiece('a',1,new Rook(board,COLOR.WHITE));
         placeNewPiece('h',1,new Rook(board,COLOR.WHITE));
     }
+
 }

@@ -8,7 +8,7 @@ import com.tio.chess.model.ChessPiece;
 
 public class Rook extends ChessPiece {
 
-    public boolean[][] matrizBoard;
+
 
     public Rook(ChessBoard board, COLOR color) {
         super(board, color);
@@ -21,50 +21,47 @@ public class Rook extends ChessPiece {
 
     @Override
     public boolean[][] possibleMoves() {
-        matrizBoard = new boolean[ getBoard().getCols()][getBoard().getRows()];
+        boolean[][] matrizBoard = new boolean[ getBoard().getRows()][getBoard().getCols()];
 
-        Position p = new Position(position.getCol(),position.getRow());
         //acima
-        p.setValues(position.getCol(), position.getRow() -1);
-        while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)){
-            matrizBoard[p.getCol()][p.getRow()] = true;
-            p.setRow(p.getRow() - 1);
+        Position ref = new Position(position.getCol() , position.getRow() -1);
+        while(getBoard().positionExists(ref) && !getBoard().thereIsAPiece(ref)) {
+            matrizBoard[ref.getRow()][ref.getCol()] = true;
+            ref.setRow(ref.getRow() -1 );
         }
-        if(getBoard().positionExists(p) && isThereOponetPiece(p)){
-            matrizBoard[p.getCol()][p.getRow()] = true;
+        if(getBoard().positionExists(ref) && isThereOponetPiece(ref)){
+            matrizBoard[ref.getRow()][ref.getCol()] = true;
         }
 
         //abaixo
-        p.setValues(position.getCol(), position.getRow() +1);
-        while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)){
-            matrizBoard[p.getCol()][p.getRow()] = true;
-            p.setRow(p.getRow() + 1);
+        ref = new Position(position.getCol() , position.getRow() +1);
+        while(getBoard().positionExists(ref) && !getBoard().thereIsAPiece(ref)) {
+            matrizBoard[ref.getRow()][ref.getCol()] = true;
+            ref.setRow(ref.getRow() +1 );
         }
-        if(getBoard().positionExists(p) && isThereOponetPiece(p)){
-            matrizBoard[p.getCol()][p.getRow()] = true;
-        }
-
-        //esquerda
-        p.setValues(position.getCol() - 1, position.getRow());
-        while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)){
-            matrizBoard[p.getCol()][p.getRow()] = true;
-            p.setCol(p.getCol() - 1);
-        }
-        if(getBoard().positionExists(p) && isThereOponetPiece(p)){
-            matrizBoard[p.getCol()][p.getRow()] = true;
+        if(getBoard().positionExists(ref) && isThereOponetPiece(ref)){
+            matrizBoard[ref.getRow()][ref.getCol()] = true;
         }
 
         //direita
-        p.setValues(position.getCol() + 1, position.getRow());
-        while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)){
-            matrizBoard[p.getCol()][p.getRow()] = true;
-            p.setCol(p.getCol() + 1);
+        ref = new Position(position.getCol() - 1, position.getRow());
+        while(getBoard().positionExists(ref) && !getBoard().thereIsAPiece(ref)) {
+            matrizBoard[ref.getRow()][ref.getCol()] = true;
+            ref.setCol(ref.getCol() - 1 );
         }
-        if(getBoard().positionExists(p) && isThereOponetPiece(p)){
-            matrizBoard[p.getCol()][p.getRow()] = true;
+        if(getBoard().positionExists(ref) && isThereOponetPiece(ref)){
+            matrizBoard[ref.getRow()][ref.getCol()] = true;
         }
 
-
+        //esquerda
+        ref = new Position(position.getCol() + 1, position.getRow());
+        while(getBoard().positionExists(ref) && !getBoard().thereIsAPiece(ref)) {
+            matrizBoard[ref.getRow()][ref.getCol()] = true;
+            ref.setCol(ref.getCol() + 1 );
+        }
+        if(getBoard().positionExists(ref) && isThereOponetPiece(ref)){
+            matrizBoard[ref.getRow()][ref.getCol()] = true;
+        }
         return matrizBoard;
     }
 

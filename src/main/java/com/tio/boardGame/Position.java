@@ -5,8 +5,8 @@ public class Position {
     private int row;
 
     public Position(int c, int r ){
-        this.row = r;
         this.col = c;
+        this.row = r;
     }
 
     public int getCol() {
@@ -25,12 +25,12 @@ public class Position {
         this.row = row;
     }
     public void setValues(int col, int row){
-        this.col =col;
+        this.col = col;
         this.row = row;
     }
 
     @Override
     public String toString() {
-        return row+" "+col;
+        return col+" "+row;
     }
 }

@@ -1,6 +1,5 @@
 package com.tio.app;
 
-import com.tio.boardGame.Piece;
 import com.tio.chess.model.COLOR;
 import com.tio.chess.model.ChessPiece;
 import com.tio.chess.model.ChessPosition;
@@ -27,21 +26,34 @@ public class UI {
     }
 
     public static void printBoard(ChessPiece[][] pieces){
-        StringBuilder sb = new StringBuilder();
         for(int i = 0; i < pieces.length; i++){
-            sb.append(pieces.length - i).append(" ");
-            for(int j = 0; j <pieces[i].length; j++){
-                sb.append(printPiece(pieces[i][j])).append(" ");
+            System.out.print((8 - i) + " ");
+            for(int j = 0; j < pieces.length; j++){
+                System.out.print(printPiece(pieces[i][j],false));
             }
-            sb.append(System.getProperty("line.separator"));
+            System.out.println(" ");
         }
-        sb.append(" a b c d e f g");
-        System.out.println(sb.toString());
+        System.out.println(" a b c d e f g");
     }
 
-    private static String printPiece(ChessPiece piece){
+    public static void printBoard(ChessPiece[][] pieces, boolean[][] possiblesMoves) {
+        for(int i = 0; i < pieces.length; i++){
+            System.out.print((8 - i ) + " ");
+            for(int j = 0; j < pieces.length; j++){
+                System.out.print(printPiece(pieces[i][j],possiblesMoves[i][j]));
+                System.out.print(" ");
+            }
+            System.out.println("");
+        }
+        System.out.println(" a b c d e f g h");
+    }
+
+    private static String printPiece(ChessPiece piece,boolean setBackGround){
+        if(setBackGround ){
+            System.out.print(ConsoleColors.GREEN_BACKGROUND);
+        }
         if(piece == null){
-            return "-";
+            return "-"+ ConsoleColors.RESET;
         }else {
             if(piece.getColor() == COLOR.WHITE) {
                 return ConsoleColors.YELLOW+ piece.toString() + ConsoleColors.RESET;
@@ -50,4 +62,6 @@ public class UI {
             }
         }
     }
+
+
 }
