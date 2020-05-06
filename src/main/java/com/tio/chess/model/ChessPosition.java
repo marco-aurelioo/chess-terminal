@@ -15,12 +15,16 @@ public class ChessPosition {
         this.row = row;
     }
 
+    public ChessPosition getChessPosition(Position position){
+        return fromPosition(position);
+    }
+
     protected Position toPosition(){
         return new Position( column - 'a', 8 - row );
     }
 
     protected static ChessPosition fromPosition(Position position){
-        return new ChessPosition((char)(position.getCol()-'a'),8-position.getRow());
+        return new ChessPosition((char)(position.getCol()+'a'),8-position.getRow());
     }
 
     public char getColumn() {

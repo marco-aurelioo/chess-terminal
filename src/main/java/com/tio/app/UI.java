@@ -34,6 +34,9 @@ public class UI {
         System.out.println("");
         System.out.println("turn: "+match.getTurn());
         System.out.println("player: "+match.getCurrentPlayer());
+        if(match.isCheck()){
+            System.out.println("Check!!!!!!!!!");
+        }
     }
 
     public static void printBoard(ChessPiece[][] pieces,List<ChessPiece> capturedPieces){
@@ -48,6 +51,7 @@ public class UI {
         }
         System.out.println(" a b c d e f g h");
         printCapturedPieces(capturedPieces);
+
     }
 
     public static void printBoard(ChessPiece[][] pieces, boolean[][] possiblesMoves) {
