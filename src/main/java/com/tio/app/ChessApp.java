@@ -17,7 +17,7 @@ public class ChessApp {
         Scanner sc = new Scanner(System.in);
 
         ChessMatch match = new ChessMatch();
-        while (true) {
+        while (!match.isCheckMate()) {
             try {
                 UI.clearScreen();
                 UI.printMatch(match);
@@ -39,5 +39,7 @@ public class ChessApp {
                 sc.nextLine();
             }
         }
+        UI.clearScreen();
+        UI.printMatch(match);
     }
 }

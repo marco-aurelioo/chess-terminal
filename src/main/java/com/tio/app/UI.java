@@ -37,6 +37,9 @@ public class UI {
         if(match.isCheck()){
             System.out.println("Check!!!!!!!!!");
         }
+        if(match.isCheckMate()){
+            System.out.println("Fim da parida Checkmate");
+        }
     }
 
     public static void printBoard(ChessPiece[][] pieces,List<ChessPiece> capturedPieces){
