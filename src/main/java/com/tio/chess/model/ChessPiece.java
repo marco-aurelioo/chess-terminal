@@ -5,7 +5,9 @@ import com.tio.boardGame.Piece;
 import com.tio.boardGame.Position;
 
 public abstract class ChessPiece extends Piece {
+
     private COLOR color;
+    private int moveCount;
 
     public ChessPiece(ChessBoard board, COLOR color){
         super(board);
@@ -16,6 +18,17 @@ public abstract class ChessPiece extends Piece {
         return this.color;
     }
 
+    public void increaseMoveCount(){
+        moveCount++;
+    }
+
+    public void decreaseMoveCount(){
+        moveCount--;
+    }
+
+    public int getMoveCount(){
+        return moveCount;
+    }
     public ChessPosition getChessPosition(){
         return ChessPosition.fromPosition(position);
     }
@@ -24,5 +37,6 @@ public abstract class ChessPiece extends Piece {
         ChessPiece p = (ChessPiece) getBoard().piece(position);
         return p != null && !p.getColor().equals(this.getColor());
     }
+
 
 }
