@@ -5,6 +5,7 @@ import com.tio.boardGame.ChessBoard;
 import com.tio.boardGame.Piece;
 import com.tio.boardGame.Position;
 import com.tio.boardGame.pieces.King;
+import com.tio.boardGame.pieces.Pawn;
 import com.tio.boardGame.pieces.Rook;
 
 import java.util.ArrayList;
@@ -194,12 +195,25 @@ public class ChessMatch {
 
     private void initialSetup(){
 
+        placeNewPiece('a',7,new Pawn(board,COLOR.BLACK));
+        placeNewPiece('b',7,new Pawn(board,COLOR.BLACK));
+        placeNewPiece('c',7,new Pawn(board,COLOR.BLACK));
+        placeNewPiece('d',7,new Pawn(board,COLOR.BLACK));
+
         placeNewPiece('a',8,new King(board,COLOR.BLACK));
         placeNewPiece('b',8,new Rook(board,COLOR.BLACK));
 
+
+
+        placeNewPiece('a',2,new Pawn(board,COLOR.WHITE));
+        placeNewPiece('b',2,new Pawn(board,COLOR.WHITE));
+        placeNewPiece('c',2,new Pawn(board,COLOR.WHITE));
+        placeNewPiece('d',2,new Pawn(board,COLOR.WHITE));
         placeNewPiece('e',1,new King(board,COLOR.WHITE));
         placeNewPiece('b',1,new Rook(board,COLOR.WHITE));
-        placeNewPiece('h',7,new Rook(board,COLOR.WHITE));
+        placeNewPiece('h',1,new Rook(board,COLOR.WHITE));
+
+
 
 
 
