@@ -1,22 +1,13 @@
 package com.tio.boardGame.pieces;
 
 import com.tio.boardGame.ChessBoard;
-import com.tio.boardGame.Piece;
 import com.tio.boardGame.Position;
 import com.tio.chess.model.COLOR;
 import com.tio.chess.model.ChessPiece;
 
-public class Rook extends ChessPiece {
-
-
-
-    public Rook(ChessBoard board, COLOR color) {
+public class Queen extends ChessPiece {
+    public Queen(ChessBoard board, COLOR color) {
         super(board, color);
-    }
-
-    @Override
-    public String toString() {
-        return "R";
     }
 
     @Override
@@ -26,7 +17,16 @@ public class Rook extends ChessPiece {
         validaMovimento(matrizBoard,-1,0);
         validaMovimento(matrizBoard,0,1);
         validaMovimento(matrizBoard,0,-1);
+        validaMovimento(matrizBoard,1,1);
+        validaMovimento(matrizBoard,1,-1);
+        validaMovimento(matrizBoard,-1,1);
+        validaMovimento(matrizBoard,-1,-1);
         return matrizBoard;
+    }
+
+    @Override
+    public String toString() {
+        return "Q";
     }
 
     private void validaMovimento(boolean[][] matrizBoard, int direcaoCol, int direcaoRow) {
@@ -39,6 +39,4 @@ public class Rook extends ChessPiece {
             matrizBoard[ref.getRow()][ref.getCol()] = true;
         }
     }
-
-
 }
