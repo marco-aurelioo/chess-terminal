@@ -40,21 +40,64 @@ public class King extends ChessPiece {
     }
 
     private void movimentoRoque(boolean[][] matrizBoard){
-        if(getMoveCount() == 0){
-            Position  posref1 = new Position(position.getCol() + 1 ,position.getRow());
-            Position  posref2 = new Position(position.getCol() + 2 ,position.getRow());
-            Position  posref3 = new Position(position.getCol() + 3 ,position.getRow());
-            ChessPiece rook = (ChessPiece) getBoard().piece(posref3);
-            if(!(rook instanceof Rook) || rook.getMoveCount() > 0){
+        if(getMoveCount() == 0 && !match.isCheck()){
+            validaRoquePequeno(matrizBoard);
+            validaRoqueGrande(matrizBoard);
+        }
+    }
+
+    private void validaRoquePequeno(boolean[][] matrizBoard) {
+        Position kingRef = new Position(position.getCol(),position.getRow());
+        for(int i = 1; i < 3; i++){
+            Position ref = new Position(kingRef.getCol() + i ,kingRef.getRow());
+            Piece piece = getBoard().piece(ref);
+            if(piece != null){
                 return;
-            }else {
-                ChessPiece piece1 = (ChessPiece) getBoard().piece(posref1);
-                ChessPiece piece2 = (ChessPiece) getBoard().piece(posref2);
-                if( piece1 == null && piece2 == null  ){
-                    matrizBoard[posref1.getRow()][posref1.getCol()] = true;
-                    matrizBoard[posref2.getRow()][posref2.getCol()] = true;
-                }
             }
+        }
+        ChessPiece rook = (ChessPiece) getBoard().piece( new Position(kingRef.getCol() + 3 ,position.getRow()));
+        if(!(rook instanceof Rook) || rook.getMoveCount() > 0){
+            return;
+        }
+        //valida peças passando por check
+        for(int i = 1; i < 3; i++){
+            Position ref = new Position(kingRef.getCol() + i ,kingRef.getRow());
+            Piece piece = match.makeMove(kingRef,ref);
+            if(match.testCheck(this.getColor())){
+                match.undoMove(kingRef,ref,(ChessPiece)piece);
+                return;
+            }
+            match.undoMove(kingRef,ref,(ChessPiece)piece);
+        }
+        for(int i = 1; i < 3; i++){
+            validaMovimento(matrizBoard,i,0);
+        }
+    }
+
+    private void validaRoqueGrande(boolean[][] matrizBoard) {
+        Position kingRef = new Position(position.getCol(),position.getRow());
+        for(int i = 1; i < 4; i++){
+            Position ref = new Position(kingRef.getCol() + (i * -1) ,kingRef.getRow());
+            Piece piece = getBoard().piece(ref);
+            if(piece != null){
+                return;
+            }
+        }
+        ChessPiece rook = (ChessPiece) getBoard().piece( new Position(kingRef.getCol() - 4 ,kingRef.getRow()));
+        if(!(rook instanceof Rook) || rook.getMoveCount() > 0){
+            return;
+        }
+        for(int i = 1; i < 3; i++){
+            Position ref = new Position(kingRef.getCol() + (i * -1) ,kingRef.getRow());
+            Piece piece = match.makeMove(kingRef,ref);
+            if(match.testCheck(this.getColor())){
+                match.undoMove(kingRef,ref,(ChessPiece)piece);
+                return;
+            }
+            match.undoMove(kingRef,ref,(ChessPiece)piece);
+        }
+        for(int i = 1; i < 3; i++){
+            validaMovimento(matrizBoard,(i*-1),0);
         }
     }
 
