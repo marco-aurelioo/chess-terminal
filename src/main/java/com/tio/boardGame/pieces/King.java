@@ -27,14 +27,14 @@ public class King extends ChessPiece {
     public boolean[][] possibleMoves() {
         boolean[][] matrizBoard = new boolean[ getBoard().getCols()][getBoard().getRows()];
 
-        validaMovimento(matrizBoard,1,1);
-        validaMovimento(matrizBoard,1,-1);
-        validaMovimento(matrizBoard,-1,1);
         validaMovimento(matrizBoard,-1,-1);
-        validaMovimento(matrizBoard,1,1);
-        validaMovimento(matrizBoard,1,-1);
+        validaMovimento(matrizBoard,-1,0);
         validaMovimento(matrizBoard,-1,1);
-        validaMovimento(matrizBoard,-1,-1);
+        validaMovimento(matrizBoard,0,-1);
+        validaMovimento(matrizBoard,0,1);
+        validaMovimento(matrizBoard,1,-1);
+        validaMovimento(matrizBoard,1,0);
+        validaMovimento(matrizBoard,1,1);
         movimentoRoque(matrizBoard);
         return matrizBoard;
     }

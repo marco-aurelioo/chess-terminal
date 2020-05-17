@@ -28,10 +28,11 @@ public class ChessBoard {
     }
 
     public Piece piece(Position position) {
-        if(position.getCol() > pieces.length){
+        try {
+            return pieces[position.getCol()][position.getRow()];
+        }catch (ArrayIndexOutOfBoundsException ex){
             throw new BoardException("Casa invalida");
         }
-        return pieces[position.getCol()][position.getRow()];
     }
 
     public void placePiece(Piece piece, Position position) {
