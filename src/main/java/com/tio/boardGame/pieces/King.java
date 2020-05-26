@@ -60,18 +60,27 @@ public class King extends ChessPiece {
             return;
         }
         //valida peças passando por check
-        for(int i = 1; i < 3; i++){
-            Position ref = new Position(kingRef.getCol() + i ,kingRef.getRow());
-            Piece piece = match.makeMove(kingRef,ref);
-            if(match.testCheck(this.getColor())){
-                match.undoMove(kingRef,ref,(ChessPiece)piece);
+        getBoard().removePiece(kingRef);
+        for(int i = 1; i < 3; i++) {
+            Position ref = new Position(kingRef.getCol() + i, kingRef.getRow());
+            getBoard().removePiece(kingRef);
+            getBoard().placePiece(this, ref);
+            if(ref.getCol() == 5){
+                System.out.println("teste "+ match.testCheck(this.getColor())+" "+getColor());
+            }
+            if (!match.testCheck(this.getColor())) {
+                matrizBoard[ref.getRow()][ref.getCol()] = true;
+                getBoard().removePiece(ref);
+                getBoard().placePiece(this,kingRef);
+            } else {
+                matrizBoard[ref.getRow()][ref.getCol()] = false;
+                getBoard().removePiece(ref);
+                getBoard().placePiece(this,kingRef);
                 return;
             }
-            match.undoMove(kingRef,ref,(ChessPiece)piece);
         }
-        for(int i = 1; i < 3; i++){
-            validaMovimento(matrizBoard,i,0);
-        }
+
+        //getBoard().placePiece(this,kingRef);
     }
 
     private void validaRoqueGrande(boolean[][] matrizBoard) {
@@ -87,18 +96,25 @@ public class King extends ChessPiece {
         if(!(rook instanceof Rook) || rook.getMoveCount() > 0){
             return;
         }
+
+
         for(int i = 1; i < 3; i++){
             Position ref = new Position(kingRef.getCol() + (i * -1) ,kingRef.getRow());
-            Piece piece = match.makeMove(kingRef,ref);
-            if(match.testCheck(this.getColor())){
-                match.undoMove(kingRef,ref,(ChessPiece)piece);
+            getBoard().removePiece(kingRef);
+            getBoard().placePiece(this,ref);
+            if(!match.testCheck(this.getColor())) {
+                matrizBoard[ref.getRow()][ref.getCol()] = true;
+                getBoard().removePiece(ref);
+                getBoard().placePiece(this,kingRef);
+            }else{
+                matrizBoard[ref.getRow()][ref.getCol()] = false;
+                getBoard().removePiece(ref);
+                getBoard().placePiece(this,kingRef);
                 return;
             }
-            match.undoMove(kingRef,ref,(ChessPiece)piece);
+
         }
-        for(int i = 1; i < 3; i++){
-            validaMovimento(matrizBoard,(i*-1),0);
-        }
+
     }
 
     private void validaMovimento(boolean[][] matrizBoard,int colAdd, int rowAdd){

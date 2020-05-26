@@ -100,6 +100,26 @@ public class ChessMatch {
             capturedPieces.remove(capturePiece);
             boardPieces.add(capturePiece);
         }
+        if(((ChessPiece) piece).getMoveCount() == 0) {
+            if (piece instanceof King) {
+                if (Math.abs(source.getCol() - target.getCol()) == 2) {
+                    //foi um roque
+                    if((source.getCol() - target.getCol()) < 2){
+                        Position rookTargetPos = new Position(source.getCol() + 1 ,source.getRow());
+                        Position rookSourcePos = new Position(7,source.getRow());
+                        Piece rook = board.removePiece(rookTargetPos);
+                        board.placePiece(rook,rookSourcePos);
+                        ((ChessPiece)rook).increaseMoveCount();
+                    }else{
+                        Position rookSourcePos = new Position(0,source.getRow());
+                        Position rookTargetPos = new Position(source.getCol() - 1 ,source.getRow());
+                        Piece rook = board.removePiece(rookTargetPos);
+                        board.placePiece(rook,rookSourcePos);
+                        ((ChessPiece)rook).increaseMoveCount();
+                    }
+                }
+            }
+        }
     }
 
     private void nextTurn(){
@@ -131,6 +151,26 @@ public class ChessMatch {
         Piece capturedPiece =  board.removePiece(target);
         ((ChessPiece)piece).increaseMoveCount();
         board.placePiece(piece,target);
+        if(((ChessPiece) piece).getMoveCount() == 1) {
+            if (piece instanceof King) {
+                if (Math.abs(source.getCol() - target.getCol()) == 2) {
+                    //foi um roque
+                    if((source.getCol() - target.getCol()) < 2){
+                        Position rookSourcePos = new Position(7,source.getRow());
+                        Piece rook = board.removePiece(rookSourcePos);
+                        Position rookTargetPos = new Position(source.getCol() + 1 ,source.getRow());
+                        board.placePiece(rook,rookTargetPos);
+                        ((ChessPiece)rook).increaseMoveCount();
+                    }else{
+                        Position rookSourcePos = new Position(0,source.getRow());
+                        Piece rook = board.removePiece(rookSourcePos);
+                        Position rookTargetPos = new Position(source.getCol() - 1 ,source.getRow());
+                        board.placePiece(rook,rookTargetPos);
+                        ((ChessPiece)rook).increaseMoveCount();
+                    }
+                }
+            }
+        }
         return capturedPiece;
     }
 
